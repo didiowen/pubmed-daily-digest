@@ -1,5 +1,7 @@
 # Pubmed Daily Digest
 
+> [繁體中文版](./README.zh-TW.md)
+
 > A Claude Code skill that pulls the past 24 hours of new PubMed articles across a few configurable thematic queries, annotates each with a TL;DR and a one-line **Hot Take** (positive or snarky), selects 3–5 notable highlights, and renders a Markdown digest to a local output directory. Output is in English by default and the language is one prompt-edit away from anything else.
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://python.org)
