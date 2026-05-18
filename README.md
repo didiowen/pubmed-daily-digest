@@ -99,6 +99,30 @@ Same idea but remove the row from Step 1, remove the entry from `SECTION_HEADERS
 
 Add a new row to the Step 1 table, add a new entry to all three dicts/lists in the scripts. The filter and renderer scale to any number of sections.
 
+### Always include certain pathogens (rescue pattern)
+
+The filter caps each section at a fixed number of articles (`CAPS` in `scripts/daily_feed_filter.py`). If you're following a specific pathogen and want articles about it to **always** make it into the digest — even when they fall past the per-section cap — add a small rescue block.
+
+Two patches to `scripts/daily_feed_filter.py`:
+
+1. Near the other regex constants (around `_NOISE_RE`), declare what to rescue and where:
+   ```python
+   _MUST_INCLUDE_RE = re.compile(r"\b(your_pathogen|another_term)\b", re.IGNORECASE)
+   _MUST_INCLUDE_SECTIONS = {"one_health", "food_security"}   # which sections to scan
+   _MUST_INCLUDE_RESCUE_CAP = 5                               # max rescued per section
+   ```
+2. Inside the per-section loop in `main()`, right after the line `capped = filtered[:cap]`, splice rescued matches back in:
+   ```python
+   capped_pmids = {a["pmid"] for a in capped}
+   rescued = [a for a in filtered[cap:]
+              if section in _MUST_INCLUDE_SECTIONS
+              and _MUST_INCLUDE_RE.search(f"{a['title']} {a['abstract']}")
+              and a["pmid"] not in capped_pmids]
+   sections_out[section] = capped + rescued[:_MUST_INCLUDE_RESCUE_CAP]
+   ```
+
+The rescue matches against title + abstract, runs after the IF sort + cap, and is bounded so a noisy week can't blow up your digest. To follow a different organism — `MRSA`, `Candida auris`, anything — swap the regex.
+
 ### Testing a query before committing it
 
 Try the query on PubMed's web UI first to make sure it returns roughly what you expect:
