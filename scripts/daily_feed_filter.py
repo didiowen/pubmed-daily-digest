@@ -135,6 +135,12 @@ def _save_seen(seen: dict) -> None:
 
 
 def _build_if_lookup() -> dict:
+    if not SJR_FILE.exists():
+        print(f"  note: {SJR_FILE.name} not found — articles will sort with if_score=0; "
+              f"copy sjr_curated.example.json to {SJR_FILE.name} and edit, or ask Claude "
+              f"to build one ('update SJR scores')",
+              file=sys.stderr)
+        return {}
     sjr = json.loads(SJR_FILE.read_text(encoding="utf-8"))
     lookup = {}
     for j in sjr.get("journals", []):

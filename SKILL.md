@@ -35,6 +35,14 @@ Scripts in `scripts/` resolve `sjr_curated.json` and the rolling `.seen_pmids.js
 cache relative to their own path, so they work from any cwd as long as the
 folder layout is intact.
 
+**Before the first run, build your own `sjr_curated.json`.** The repo ships
+`sjr_curated.example.json` only as a schema reference — its contents reflect
+the original author's specialty interests. Either copy and edit it for your
+own journals, or ask Claude to bootstrap one for your specialty using the
+Maintenance workflow below. If `sjr_curated.json` is absent, the filter
+still runs but every article gets `if_score = 0` and the per-section IF
+sort becomes order-of-arrival.
+
 ## Date handling
 
 Runs use the **system clock + a configured timezone** to derive today's date.
@@ -264,36 +272,66 @@ list, and any PMIDs still missing abstracts (for manual backfill next run).
 
 ---
 
-## Maintenance — yearly SJR refresh
+## Maintenance — build / refresh `sjr_curated.json`
 
 `sjr_curated.json` is a small lookup table from journal abbreviation / title
-to SJR score. SCImago publishes the new annual rankings around June each
-year, so scores drift over time. Once a year (or whenever the user asks),
-run the refresh:
+to SJR (Scimago Journal Rank) score. The filter script uses it to rank and
+cap articles within each section. Two scenarios use the same workflow:
 
-**Trigger phrases**: "update SJR scores", "refresh journal rankings",
-"update sjr_curated".
+- **First-time bootstrap** — the user just installed the skill and there's no
+  `sjr_curated.json` yet.
+- **Yearly refresh** — SCImago publishes new rankings around June each year;
+  existing scores drift over time.
+
+**Trigger phrases**: "build sjr_curated", "update SJR scores",
+"refresh journal rankings".
+
+**Schema** (preserve this exactly):
+
+```json
+{
+  "journals": [
+    {
+      "title": "The New England Journal of Medicine",
+      "abbr": "N Engl J Med",
+      "sjr": 34.6,
+      "if": 96.2,
+      "cluster": "general"
+    }
+  ]
+}
+```
+
+`abbr` (NLM Title Abbreviation) and `title` are both used for lookup; `if`
+is the field the filter script reads as the score. `sjr` and `cluster` are
+metadata for human reference. Look up NLM abbreviations at
+https://www.ncbi.nlm.nih.gov/nlmcatalog/journals.
 
 **Workflow** (prompt-driven — no extra script):
 
-1. Read the current `sjr_curated.json` to learn the **curated journal list**
-   — this is the set of journals the user wants tracked. Do not expand the
-   list during the refresh.
-2. Visit `https://www.scimagojr.com/` and locate the current per-category
+1. **First-time bootstrap**: ask the user which medical specialties /
+   topics they care about (Infectious Diseases, Hematology, Cardiology,
+   Oncology, etc.). For each specialty, pick the top ~10–30 journals by
+   reputation / SJR rank. Aggregate into a single list; aim for 50–200
+   entries total. If `sjr_curated.example.json` is present and the user
+   wants to start from it, copy and trim instead of starting empty.
+2. **Yearly refresh**: read the existing `sjr_curated.json` — that's the
+   curated journal list. **Do not expand it** during a refresh; only
+   update scores.
+3. Visit `https://www.scimagojr.com/` and locate the current per-category
    ranking download (SCImago has changed their URL scheme historically, so
-   check the live site rather than hardcoding a URL). For the first refresh,
-   ask the user which subject categories are relevant (Infectious Diseases,
-   Immunology, Microbiology (medical), Public Health, Hepatology, etc.).
-3. For each journal in the current list, match by NLM abbreviation / full
-   title and update the SJR score field in place. Preserve the file schema
-   exactly (don't add new keys, don't reorder).
-4. Report: how many journals updated, which couldn't be matched (so the user
-   can fix manually), median SJR shift (sanity check that the right year
-   loaded).
-5. Save the updated JSON.
+   check the live site rather than hardcoding a URL).
+4. For each journal in the working list, match by NLM abbreviation / full
+   title and pull the latest `sjr` and `if` (or the closest available
+   proxy — SCImago publishes SJR; impact factors come from a separate
+   source like Web of Science or Clarivate).
+5. Report: how many journals updated, which couldn't be matched (so the
+   user can fix manually), and median SJR shift (sanity check that the
+   right year loaded).
+6. Save to `sjr_curated.json` (preserving the schema).
 
-Skipping a refresh isn't fatal — digests will still rank/filter, just with
-stale scores.
+Skipping a refresh isn't fatal — digests still rank/filter, just with stale
+or zero scores.
 
 ---
 
@@ -306,4 +344,4 @@ stale scores.
 | One query returns 0 articles                    | Continue; that section's Markdown shows a placeholder                                           |
 | CrossRef fails for an article (any reason)      | Continue; leave `tldr` and `comment` blank; report PMID in the final summary                    |
 | `{OUTPUT_DIR}/{DATE}.md` already exists         | Stop and report — don't silently overwrite a digest                                             |
-| Script can't find `sjr_curated.json`            | Confirm the folder layout is intact (scripts/, sjr_curated.json, output/ all under skill root)  |
+| `sjr_curated.json` missing                      | Filter still runs (`if_score = 0` for all); see the Maintenance section to build / refresh it    |

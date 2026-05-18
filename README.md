@@ -6,17 +6,17 @@ A Claude Code skill that pulls the past 24 hours of new PubMed articles across a
 
 ```
 pubmed-daily-digest/
-├── SKILL.md              # the skill
-├── README.md             # this file
+├── SKILL.md                       # the skill
+├── README.md                      # this file
 ├── LICENSE
-├── sjr_curated.json      # journal SJR (Scimago) lookup — used to rank/filter results
-├── output/               # default destination for digests (kept by .gitkeep)
+├── sjr_curated.example.json       # schema reference — copy to sjr_curated.json and edit
+├── output/                        # default destination for digests (kept by .gitkeep)
 └── scripts/
-    ├── daily_feed_filter.py    # filter, dedupe, rank, cap; produces {DATE}_daily.json
-    └── build_daily_md.py       # render annotated JSON → {DATE}.md
+    ├── daily_feed_filter.py       # filter, dedupe, rank, cap; produces {DATE}_daily.json
+    └── build_daily_md.py          # render annotated JSON → {DATE}.md
 ```
 
-Scripts self-locate `sjr_curated.json` and the rolling `.seen_pmids.json` cache relative to their own path, so they work from any working directory as long as the folder layout is intact.
+You'll need to create your own `sjr_curated.json` (a small lookup from journal abbreviation / title to SJR score) — see [Building `sjr_curated.json`](#building-sjr_curatedjson) below. Scripts self-locate the file and the rolling `.seen_pmids.json` cache relative to their own path, so they work from any working directory as long as the folder layout is intact.
 
 ## Dependencies
 
@@ -34,7 +34,8 @@ Scripts self-locate `sjr_curated.json` and the rolling `.seen_pmids.json` cache 
    - `TIMEZONE` — default `UTC`; set to your IANA zone, e.g. `Asia/Taipei`, `America/New_York`, `Europe/Berlin`.
    - `CROSSREF_MAILTO` — any valid email (used as the CrossRef polite-pool identifier).
 4. (Optional) Edit the four PubMed queries in Step 1 to match your interests — see [Customising the queries](#customising-the-queries) below.
-5. Trigger from Claude Code: ask it to "run the daily digest" or invoke the skill by name.
+5. **Build your own `sjr_curated.json`** — the filter uses it to rank articles by journal impact within each section. Either copy and trim `sjr_curated.example.json`, or ask Claude to build one for your specialties (see [Building `sjr_curated.json`](#building-sjr_curatedjson)). The filter still runs without this file, but every article gets `if_score = 0`.
+6. Trigger from Claude Code: ask it to "run the daily digest" or invoke the skill by name.
 
 ## Customising the queries
 
@@ -127,23 +128,51 @@ The skill anchors `DATE` to the system clock + your configured `TIMEZONE` (defau
 
 Why this matters: PubMed's `edat` (Entrez-added date) is in US Eastern time. If you run early in *your* morning and the PubMed indexing for that calendar day isn't done yet, Step 1 will return zero articles — and the skill falls back to `DATE − 1` automatically.
 
-## Yearly SJR refresh
+## Building `sjr_curated.json`
 
-`sjr_curated.json` is a small lookup from journal abbreviation / title to SJR (Scimago Journal Rank) score. The filter script uses it to rank and cap each section's articles. SCImago publishes new rankings annually (around June each year), so scores drift over time.
+`sjr_curated.json` is a small lookup from journal abbreviation / title to SJR (Scimago Journal Rank) score. The filter script uses it to rank articles within each section and to cap how many make it into the digest.
 
-**To refresh** — just ask Claude: `"update SJR scores"` or `"refresh journal rankings"`. The skill has a dedicated Maintenance workflow (see the corresponding section in `SKILL.md`) that:
+The repo ships `sjr_curated.example.json` purely as a **schema reference** — its journal list reflects the original author's specialty interests and is unlikely to match yours.
 
-1. Reads your current journal list out of `sjr_curated.json`.
-2. Pulls the latest SCImago per-category rankings.
-3. Updates the score on each journal in place (preserving the list — it never adds journals).
-4. Reports which journals couldn't be matched (so you can fix manually) and the median SJR shift (sanity check that the right year loaded).
+### Schema
 
-Run once a year. Skipping it isn't fatal — your digests will keep working, just with last year's scores.
+```json
+{
+  "journals": [
+    {
+      "title": "The New England Journal of Medicine",
+      "abbr": "N Engl J Med",
+      "sjr": 34.6,
+      "if": 96.2,
+      "cluster": "general"
+    }
+  ]
+}
+```
+
+- `abbr` — NLM Title Abbreviation. Look up at https://www.ncbi.nlm.nih.gov/nlmcatalog/journals.
+- `title` — full journal name. Used as a fallback lookup if `abbr` doesn't match.
+- `if` — impact factor (or any numeric ranking value). The filter reads this as the score for sorting and capping.
+- `sjr`, `cluster` — metadata for your own reference; not used by the script.
+
+### Bootstrap (first time)
+
+Easiest: just ask Claude. Trigger phrases the skill recognises: `"build sjr_curated"`, `"update SJR scores"`, `"refresh journal rankings"`.
+
+For a new install, Claude will:
+
+1. Ask which medical specialties / topics you care about (e.g. Infectious Diseases, Hematology, Cardiology, Oncology, Public Health).
+2. Compile a list of ~10–30 top journals per specialty — using SJR rankings from https://www.scimagojr.com/ for objectivity.
+3. Write the JSON in the schema above.
+
+Alternatively, copy `sjr_curated.example.json` to `sjr_curated.json` and trim / replace entries by hand.
+
+### Yearly refresh
+
+SCImago publishes new rankings each year (around June), so scores drift. Once a year, ask Claude to `"update SJR scores"`. It reads your existing journal list (without adding journals), looks up the latest SCImago scores, updates the file in place, and reports any journals it couldn't match.
+
+Skipping a refresh isn't fatal — the filter keeps working with stale or zero scores.
 
 ## License
 
 MIT — see [`LICENSE`](./LICENSE).
-
-## Credits
-
-Extracted from a private daily journal-digest skill where several steps were specific to one author's Obsidian vault and notes-publishing setup. Those steps were removed for portability before publishing here.
