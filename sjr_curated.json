@@ -1,0 +1,1067 @@
+{
+  "_meta": {
+    "source": "Scimago Journal Rankings (SJR) + JCR Impact Factor — approximate values, last updated 2024",
+    "note": "Curated subset for ID/Hematology/Transplant, One Health/Zoonoses, Food Security/Food Safety. Includes major multidisciplinary journals (Nature, Science, PNAS, PLoS One, Sci Rep) that frequently publish ID-relevant work. Update annually.",
+    "sjr_source": "https://www.scimagojr.com/journalrank.php",
+    "fields": "title: PubMed journal name | abbr: PubMed TA field | sjr: SJR score | if: JCR Impact Factor (approx) | cluster: primary topic cluster"
+  },
+  "journals": [
+    {
+      "title": "The New England Journal of Medicine",
+      "abbr": "N Engl J Med",
+      "sjr": 34.6,
+      "if": 96.2,
+      "cluster": "ID"
+    },
+    {
+      "title": "The Lancet",
+      "abbr": "Lancet",
+      "sjr": 26.3,
+      "if": 98.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "JAMA",
+      "abbr": "JAMA",
+      "sjr": 17.2,
+      "if": 120.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "Nature Medicine",
+      "abbr": "Nat Med",
+      "sjr": 20.1,
+      "if": 58.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "The BMJ",
+      "abbr": "BMJ",
+      "sjr": 10.4,
+      "if": 107.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "PLOS Medicine",
+      "abbr": "PLoS Med",
+      "sjr": 4.8,
+      "if": 10.5,
+      "cluster": "ID"
+    },
+    {
+      "title": "Annals of Internal Medicine",
+      "abbr": "Ann Intern Med",
+      "sjr": 8.3,
+      "if": 39.2,
+      "cluster": "ID"
+    },
+    {
+      "title": "The Lancet Infectious Diseases",
+      "abbr": "Lancet Infect Dis",
+      "sjr": 9.2,
+      "if": 27.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "The Lancet Haematology",
+      "abbr": "Lancet Haematol",
+      "sjr": 6.1,
+      "if": 16.2,
+      "cluster": "ID"
+    },
+    {
+      "title": "Blood",
+      "abbr": "Blood",
+      "sjr": 6.4,
+      "if": 20.3,
+      "cluster": "ID"
+    },
+    {
+      "title": "Blood Advances",
+      "abbr": "Blood Adv",
+      "sjr": 2.8,
+      "if": 7.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "Haematologica",
+      "abbr": "Haematologica",
+      "sjr": 3.4,
+      "if": 10.1,
+      "cluster": "ID"
+    },
+    {
+      "title": "British Journal of Haematology",
+      "abbr": "Br J Haematol",
+      "sjr": 2.1,
+      "if": 5.5,
+      "cluster": "ID"
+    },
+    {
+      "title": "American Journal of Hematology",
+      "abbr": "Am J Hematol",
+      "sjr": 2.9,
+      "if": 10.1,
+      "cluster": "ID"
+    },
+    {
+      "title": "Leukemia",
+      "abbr": "Leukemia",
+      "sjr": 4.5,
+      "if": 11.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "Clinical Infectious Diseases",
+      "abbr": "Clin Infect Dis",
+      "sjr": 4.1,
+      "if": 8.8,
+      "cluster": "ID"
+    },
+    {
+      "title": "Journal of Infectious Diseases",
+      "abbr": "J Infect Dis",
+      "sjr": 2.9,
+      "if": 5.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "Emerging Infectious Diseases",
+      "abbr": "Emerg Infect Dis",
+      "sjr": 3.5,
+      "if": 7.3,
+      "cluster": "ID"
+    },
+    {
+      "title": "Clinical Microbiology and Infection",
+      "abbr": "Clin Microbiol Infect",
+      "sjr": 3.0,
+      "if": 8.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "Antimicrobial Agents and Chemotherapy",
+      "abbr": "Antimicrob Agents Chemother",
+      "sjr": 2.4,
+      "if": 4.1,
+      "cluster": "ID"
+    },
+    {
+      "title": "Journal of Antimicrobial Chemotherapy",
+      "abbr": "J Antimicrob Chemother",
+      "sjr": 2.3,
+      "if": 5.3,
+      "cluster": "ID"
+    },
+    {
+      "title": "PLOS Pathogens",
+      "abbr": "PLoS Pathog",
+      "sjr": 4.2,
+      "if": 6.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "mBio",
+      "abbr": "mBio",
+      "sjr": 3.8,
+      "if": 5.1,
+      "cluster": "ID"
+    },
+    {
+      "title": "Journal of Clinical Microbiology",
+      "abbr": "J Clin Microbiol",
+      "sjr": 2.6,
+      "if": 5.2,
+      "cluster": "ID"
+    },
+    {
+      "title": "Open Forum Infectious Diseases",
+      "abbr": "Open Forum Infect Dis",
+      "sjr": 1.4,
+      "if": 3.9,
+      "cluster": "ID"
+    },
+    {
+      "title": "Infection",
+      "abbr": "Infection",
+      "sjr": 1.6,
+      "if": 4.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "International Journal of Infectious Diseases",
+      "abbr": "Int J Infect Dis",
+      "sjr": 1.3,
+      "if": 3.1,
+      "cluster": "ID"
+    },
+    {
+      "title": "Transplantation",
+      "abbr": "Transplantation",
+      "sjr": 2.0,
+      "if": 5.3,
+      "cluster": "ID"
+    },
+    {
+      "title": "American Journal of Transplantation",
+      "abbr": "Am J Transplant",
+      "sjr": 3.2,
+      "if": 8.9,
+      "cluster": "ID"
+    },
+    {
+      "title": "Transplant Infectious Disease",
+      "abbr": "Transpl Infect Dis",
+      "sjr": 1.3,
+      "if": 2.1,
+      "cluster": "ID"
+    },
+    {
+      "title": "Transplantation and Cellular Therapy",
+      "abbr": "Transplant Cell Ther",
+      "sjr": 1.7,
+      "if": 3.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "Bone Marrow Transplantation",
+      "abbr": "Bone Marrow Transplant",
+      "sjr": 2.0,
+      "if": 5.2,
+      "cluster": "ID"
+    },
+    {
+      "title": "Cytotherapy",
+      "abbr": "Cytotherapy",
+      "sjr": 1.5,
+      "if": 3.2,
+      "cluster": "ID"
+    },
+    {
+      "title": "Mycoses",
+      "abbr": "Mycoses",
+      "sjr": 1.6,
+      "if": 4.1,
+      "cluster": "ID"
+    },
+    {
+      "title": "Medical Mycology",
+      "abbr": "Med Mycol",
+      "sjr": 1.7,
+      "if": 3.9,
+      "cluster": "ID"
+    },
+    {
+      "title": "Journal of Fungi",
+      "abbr": "J Fungi (Basel)",
+      "sjr": 1.3,
+      "if": 4.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "Fungal Genetics and Biology",
+      "abbr": "Fungal Genet Biol",
+      "sjr": 1.4,
+      "if": 3.3,
+      "cluster": "ID"
+    },
+    {
+      "title": "Clinical Transplantation",
+      "abbr": "Clin Transplant",
+      "sjr": 1.2,
+      "if": 2.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "Frontiers in Cellular and Infection Microbiology",
+      "abbr": "Front Cell Infect Microbiol",
+      "sjr": 1.1,
+      "if": 5.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "Journal of Medical Virology",
+      "abbr": "J Med Virol",
+      "sjr": 1.5,
+      "if": 6.8,
+      "cluster": "ID"
+    },
+    {
+      "title": "Antiviral Research",
+      "abbr": "Antiviral Res",
+      "sjr": 2.0,
+      "if": 5.9,
+      "cluster": "ID"
+    },
+    {
+      "title": "Viruses",
+      "abbr": "Viruses",
+      "sjr": 1.2,
+      "if": 4.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "Infection and Immunity",
+      "abbr": "Infect Immun",
+      "sjr": 1.8,
+      "if": 3.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "Microbiology Spectrum",
+      "abbr": "Microbiol Spectr",
+      "sjr": 1.4,
+      "if": 3.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "IDCases",
+      "abbr": "IDCases",
+      "sjr": 0.5,
+      "if": 1.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "The Lancet Microbe",
+      "abbr": "Lancet Microbe",
+      "sjr": 5.5,
+      "if": 20.9,
+      "cluster": "ID"
+    },
+    {
+      "title": "Nature Communications",
+      "abbr": "Nat Commun",
+      "sjr": 7.2,
+      "if": 14.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "Science Translational Medicine",
+      "abbr": "Sci Transl Med",
+      "sjr": 12.0,
+      "if": 15.8,
+      "cluster": "ID"
+    },
+    {
+      "title": "One Health",
+      "abbr": "One Health",
+      "sjr": 2.0,
+      "if": 5.7,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Transboundary and Emerging Diseases",
+      "abbr": "Transbound Emerg Dis",
+      "sjr": 1.8,
+      "if": 2.6,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Zoonoses and Public Health",
+      "abbr": "Zoonoses Public Health",
+      "sjr": 1.1,
+      "if": 2.1,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "EcoHealth",
+      "abbr": "EcoHealth",
+      "sjr": 1.4,
+      "if": 3.7,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Vector-Borne and Zoonotic Diseases",
+      "abbr": "Vector Borne Zoonotic Dis",
+      "sjr": 1.0,
+      "if": 2.0,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "PLOS Neglected Tropical Diseases",
+      "abbr": "PLoS Negl Trop Dis",
+      "sjr": 2.2,
+      "if": 3.4,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Parasites and Vectors",
+      "abbr": "Parasit Vectors",
+      "sjr": 1.3,
+      "if": 3.3,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "International Journal for Parasitology",
+      "abbr": "Int J Parasitol",
+      "sjr": 1.7,
+      "if": 4.0,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Parasitology",
+      "abbr": "Parasitology",
+      "sjr": 1.1,
+      "if": 2.3,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Acta Tropica",
+      "abbr": "Acta Trop",
+      "sjr": 1.0,
+      "if": 2.8,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Tropical Medicine and Infectious Disease",
+      "abbr": "Trop Med Infect Dis",
+      "sjr": 0.8,
+      "if": 2.8,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Journal of Wildlife Diseases",
+      "abbr": "J Wildl Dis",
+      "sjr": 0.9,
+      "if": 1.6,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Veterinary Microbiology",
+      "abbr": "Vet Microbiol",
+      "sjr": 1.3,
+      "if": 3.3,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Preventive Veterinary Medicine",
+      "abbr": "Prev Vet Med",
+      "sjr": 1.2,
+      "if": 2.8,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "American Journal of Epidemiology",
+      "abbr": "Am J Epidemiol",
+      "sjr": 2.7,
+      "if": 5.0,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Epidemiology and Infection",
+      "abbr": "Epidemiol Infect",
+      "sjr": 1.2,
+      "if": 2.5,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "BMC Infectious Diseases",
+      "abbr": "BMC Infect Dis",
+      "sjr": 1.1,
+      "if": 3.4,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Global Health Science and Practice",
+      "abbr": "Glob Health Sci Pract",
+      "sjr": 1.0,
+      "if": 2.8,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Frontiers in Public Health",
+      "abbr": "Front Public Health",
+      "sjr": 0.9,
+      "if": 3.0,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "International Journal of Environmental Research and Public Health",
+      "abbr": "Int J Environ Res Public Health",
+      "sjr": 0.8,
+      "if": 4.0,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Nature Food",
+      "abbr": "Nat Food",
+      "sjr": 6.5,
+      "if": 23.0,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Global Food Security",
+      "abbr": "Glob Food Secur",
+      "sjr": 2.8,
+      "if": 9.0,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Food Policy",
+      "abbr": "Food Policy",
+      "sjr": 2.6,
+      "if": 7.5,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "World Development",
+      "abbr": "World Dev",
+      "sjr": 2.3,
+      "if": 6.0,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Food Control",
+      "abbr": "Food Control",
+      "sjr": 1.8,
+      "if": 6.5,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Food and Chemical Toxicology",
+      "abbr": "Food Chem Toxicol",
+      "sjr": 1.6,
+      "if": 6.5,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "International Journal of Food Microbiology",
+      "abbr": "Int J Food Microbiol",
+      "sjr": 1.7,
+      "if": 7.0,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Food Microbiology",
+      "abbr": "Food Microbiol",
+      "sjr": 1.5,
+      "if": 4.5,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Foodborne Pathogens and Disease",
+      "abbr": "Foodborne Pathog Dis",
+      "sjr": 1.0,
+      "if": 2.5,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Journal of Food Protection",
+      "abbr": "J Food Prot",
+      "sjr": 1.1,
+      "if": 2.5,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "EFSA Journal",
+      "abbr": "EFSA J",
+      "sjr": 1.6,
+      "if": 4.9,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Food Security",
+      "abbr": "Food Secur",
+      "sjr": 1.4,
+      "if": 3.3,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Food Research International",
+      "abbr": "Food Res Int",
+      "sjr": 1.9,
+      "if": 8.1,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "LWT - Food Science and Technology",
+      "abbr": "LWT",
+      "sjr": 1.4,
+      "if": 6.0,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Comprehensive Reviews in Food Science and Food Safety",
+      "abbr": "Compr Rev Food Sci Food Saf",
+      "sjr": 3.5,
+      "if": 12.0,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "npj Science of Food",
+      "abbr": "NPJ Sci Food",
+      "sjr": 1.8,
+      "if": 6.3,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Pathogens",
+      "abbr": "Pathogens",
+      "sjr": 0.9,
+      "if": 3.0,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Journal of Applied Microbiology",
+      "abbr": "J Appl Microbiol",
+      "sjr": 1.1,
+      "if": 3.6,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Microbial Biotechnology",
+      "abbr": "Microb Biotechnol",
+      "sjr": 1.3,
+      "if": 5.7,
+      "cluster": "FoodSecurity"
+    },
+    {
+      "title": "Scientific Reports",
+      "abbr": "Sci Rep",
+      "sjr": 0.9,
+      "if": 3.8,
+      "cluster": "ID"
+    },
+    {
+      "title": "PLOS ONE",
+      "abbr": "PLoS One",
+      "sjr": 0.85,
+      "if": 2.9,
+      "cluster": "ID"
+    },
+    {
+      "title": "Proceedings of the National Academy of Sciences",
+      "abbr": "Proc Natl Acad Sci U S A",
+      "sjr": 4.5,
+      "if": 9.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "Science",
+      "abbr": "Science",
+      "sjr": 12.0,
+      "if": 44.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "Cell",
+      "abbr": "Cell",
+      "sjr": 24.2,
+      "if": 64.5,
+      "cluster": "ID"
+    },
+    {
+      "title": "Nature",
+      "abbr": "Nature",
+      "sjr": 17.9,
+      "if": 50.5,
+      "cluster": "ID"
+    },
+    {
+      "title": "Cell Reports",
+      "abbr": "Cell Rep",
+      "sjr": 4.0,
+      "if": 7.5,
+      "cluster": "ID"
+    },
+    {
+      "title": "Communications Biology",
+      "abbr": "Commun Biol",
+      "sjr": 2.0,
+      "if": 5.2,
+      "cluster": "ID"
+    },
+    {
+      "title": "Scientific Data",
+      "abbr": "Sci Data",
+      "sjr": 1.8,
+      "if": 5.8,
+      "cluster": "ID"
+    },
+    {
+      "title": "EClinicalMedicine",
+      "abbr": "EClinicalMedicine",
+      "sjr": 3.4,
+      "if": 9.6,
+      "cluster": "ID"
+    },
+    {
+      "title": "Critical Care",
+      "abbr": "Crit Care",
+      "sjr": 3.0,
+      "if": 8.8,
+      "cluster": "ID"
+    },
+    {
+      "title": "Cell Host & Microbe",
+      "abbr": "Cell Host Microbe",
+      "sjr": 7.4,
+      "if": 20.6,
+      "cluster": "ID"
+    },
+    {
+      "title": "Nature Microbiology",
+      "abbr": "Nat Microbiol",
+      "sjr": 9.0,
+      "if": 20.5,
+      "cluster": "ID"
+    },
+    {
+      "title": "Nature Reviews Microbiology",
+      "abbr": "Nat Rev Microbiol",
+      "sjr": 22.0,
+      "if": 78.3,
+      "cluster": "ID"
+    },
+    {
+      "title": "Microbiology and Molecular Biology Reviews",
+      "abbr": "Microbiol Mol Biol Rev",
+      "sjr": 4.5,
+      "if": 9.5,
+      "cluster": "ID"
+    },
+    {
+      "title": "Emerging Microbes & Infections",
+      "abbr": "Emerg Microbes Infect",
+      "sjr": 3.6,
+      "if": 8.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "Reviews in Medical Virology",
+      "abbr": "Rev Med Virol",
+      "sjr": 2.4,
+      "if": 6.9,
+      "cluster": "ID"
+    },
+    {
+      "title": "International Journal of Antimicrobial Agents",
+      "abbr": "Int J Antimicrob Agents",
+      "sjr": 1.8,
+      "if": 5.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "JAC-Antimicrobial Resistance",
+      "abbr": "JAC Antimicrob Resist",
+      "sjr": 1.4,
+      "if": 3.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "Journal of Virology",
+      "abbr": "J Virol",
+      "sjr": 1.6,
+      "if": 4.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "European Journal of Clinical Microbiology & Infectious Diseases",
+      "abbr": "Eur J Clin Microbiol Infect Dis",
+      "sjr": 1.2,
+      "if": 3.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "Virologica Sinica",
+      "abbr": "Virol Sin",
+      "sjr": 1.6,
+      "if": 4.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "mSphere",
+      "abbr": "mSphere",
+      "sjr": 1.4,
+      "if": 3.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "mSystems",
+      "abbr": "mSystems",
+      "sjr": 1.9,
+      "if": 5.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "Journal of Bacteriology",
+      "abbr": "J Bacteriol",
+      "sjr": 1.0,
+      "if": 2.7,
+      "cluster": "ID"
+    },
+    {
+      "title": "BMC Microbiology",
+      "abbr": "BMC Microbiol",
+      "sjr": 1.1,
+      "if": 4.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "Applied and Environmental Microbiology",
+      "abbr": "Appl Environ Microbiol",
+      "sjr": 1.4,
+      "if": 3.9,
+      "cluster": "ID"
+    },
+    {
+      "title": "Environmental Microbiology",
+      "abbr": "Environ Microbiol",
+      "sjr": 1.6,
+      "if": 4.3,
+      "cluster": "ID"
+    },
+    {
+      "title": "Virology Journal",
+      "abbr": "Virol J",
+      "sjr": 1.0,
+      "if": 4.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "Microbial Pathogenesis",
+      "abbr": "Microb Pathog",
+      "sjr": 0.9,
+      "if": 3.5,
+      "cluster": "ID"
+    },
+    {
+      "title": "Mycopathologia",
+      "abbr": "Mycopathologia",
+      "sjr": 0.9,
+      "if": 3.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "Infectious Diseases and Therapy",
+      "abbr": "Infect Dis Ther",
+      "sjr": 1.5,
+      "if": 4.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "Infection and Drug Resistance",
+      "abbr": "Infect Drug Resist",
+      "sjr": 0.9,
+      "if": 2.9,
+      "cluster": "ID"
+    },
+    {
+      "title": "npj Antimicrobials and Resistance",
+      "abbr": "NPJ Antimicrob Resist",
+      "sjr": 1.4,
+      "if": 4.0,
+      "cluster": "ID"
+    },
+    {
+      "title": "Transactions of the Royal Society of Tropical Medicine and Hygiene",
+      "abbr": "Trans R Soc Trop Med Hyg",
+      "sjr": 0.7,
+      "if": 1.9,
+      "cluster": "ID"
+    },
+    {
+      "title": "Tropical Medicine & International Health",
+      "abbr": "Trop Med Int Health",
+      "sjr": 0.9,
+      "if": 2.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "The American Journal of Tropical Medicine and Hygiene",
+      "abbr": "Am J Trop Med Hyg",
+      "sjr": 1.0,
+      "if": 2.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "Japanese Journal of Infectious Diseases",
+      "abbr": "Jpn J Infect Dis",
+      "sjr": 0.6,
+      "if": 2.3,
+      "cluster": "ID"
+    },
+    {
+      "title": "Health Security",
+      "abbr": "Health Secur",
+      "sjr": 0.7,
+      "if": 2.6,
+      "cluster": "ID"
+    },
+    {
+      "title": "International Health",
+      "abbr": "Int Health",
+      "sjr": 0.9,
+      "if": 2.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "Bulletin of the World Health Organization",
+      "abbr": "Bull World Health Organ",
+      "sjr": 2.5,
+      "if": 7.5,
+      "cluster": "ID"
+    },
+    {
+      "title": "PLOS Global Public Health",
+      "abbr": "PLOS Glob Public Health",
+      "sjr": 1.0,
+      "if": 4.3,
+      "cluster": "ID"
+    },
+    {
+      "title": "BMC Public Health",
+      "abbr": "BMC Public Health",
+      "sjr": 1.4,
+      "if": 4.5,
+      "cluster": "ID"
+    },
+    {
+      "title": "Archives of Public Health",
+      "abbr": "Arch Public Health",
+      "sjr": 1.0,
+      "if": 3.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "Journal of Epidemiology and Global Health",
+      "abbr": "J Epidemiol Glob Health",
+      "sjr": 1.0,
+      "if": 3.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "Cancer Medicine",
+      "abbr": "Cancer Med",
+      "sjr": 0.9,
+      "if": 2.9,
+      "cluster": "Hema"
+    },
+    {
+      "title": "Clinical Transplantation and Research",
+      "abbr": "Clin Transplant Res",
+      "sjr": 0.6,
+      "if": 2.4,
+      "cluster": "ID"
+    },
+    {
+      "title": "Veterinary Research",
+      "abbr": "Vet Res",
+      "sjr": 1.6,
+      "if": 4.1,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Ticks and Tick-borne Diseases",
+      "abbr": "Ticks Tick Borne Dis",
+      "sjr": 1.0,
+      "if": 3.0,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Veterinary Medicine and Science",
+      "abbr": "Vet Med Sci",
+      "sjr": 0.6,
+      "if": 2.0,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Veterinary Parasitology: Regional Studies and Reports",
+      "abbr": "Vet Parasitol Reg Stud Reports",
+      "sjr": 0.5,
+      "if": 1.7,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Veterinary Research Communications",
+      "abbr": "Vet Res Commun",
+      "sjr": 0.7,
+      "if": 2.4,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Parasitology International",
+      "abbr": "Parasitol Int",
+      "sjr": 0.6,
+      "if": 1.9,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Animal Microbiome",
+      "abbr": "Anim Microbiome",
+      "sjr": 1.4,
+      "if": 4.5,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Journal of Fish Diseases",
+      "abbr": "J Fish Dis",
+      "sjr": 0.7,
+      "if": 2.7,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Porcine Health Management",
+      "abbr": "Porcine Health Manag",
+      "sjr": 0.9,
+      "if": 3.3,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Experimental & Applied Acarology",
+      "abbr": "Exp Appl Acarol",
+      "sjr": 0.5,
+      "if": 1.7,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Tropical Animal Health and Production",
+      "abbr": "Trop Anim Health Prod",
+      "sjr": 0.5,
+      "if": 1.6,
+      "cluster": "OneHealth"
+    },
+    {
+      "title": "Journal of Agricultural and Food Chemistry",
+      "abbr": "J Agric Food Chem",
+      "sjr": 1.4,
+      "if": 6.1,
+      "cluster": "Food"
+    },
+    {
+      "title": "Food Chemistry",
+      "abbr": "Food Chem",
+      "sjr": 2.2,
+      "if": 8.5,
+      "cluster": "Food"
+    },
+    {
+      "title": "Journal of Food Science",
+      "abbr": "J Food Sci",
+      "sjr": 0.8,
+      "if": 3.2,
+      "cluster": "Food"
+    },
+    {
+      "title": "Journal of the Science of Food and Agriculture",
+      "abbr": "J Sci Food Agric",
+      "sjr": 0.9,
+      "if": 3.9,
+      "cluster": "Food"
+    },
+    {
+      "title": "Food Science & Nutrition",
+      "abbr": "Food Sci Nutr",
+      "sjr": 0.7,
+      "if": 3.4,
+      "cluster": "Food"
+    },
+    {
+      "title": "Food and Environmental Virology",
+      "abbr": "Food Environ Virol",
+      "sjr": 0.8,
+      "if": 3.5,
+      "cluster": "Food"
+    }
+  ]
+}
