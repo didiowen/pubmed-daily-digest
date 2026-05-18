@@ -1,6 +1,11 @@
-# pubmed-daily-digest
+# Pubmed Daily Digest
 
-A Claude Code skill that pulls the past 24 hours of new PubMed articles across a few configurable thematic queries, annotates each with a TL;DR and a one-line **Hot Take** (positive or snarky), selects 3–5 notable highlights, and renders a Markdown digest to a local output directory. Output is in English by default and the language is one prompt-edit away from anything else.
+> A Claude Code skill that pulls the past 24 hours of new PubMed articles across a few configurable thematic queries, annotates each with a TL;DR and a one-line **Hot Take** (positive or snarky), selects 3–5 notable highlights, and renders a Markdown digest to a local output directory. Output is in English by default and the language is one prompt-edit away from anything else.
+
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill%20Based-blueviolet?logo=anthropic)](https://claude.ai/claude-code)
+[![Made in Taiwan](https://img.shields.io/badge/Made%20in-Taiwan%20%F0%9F%87%B9%F0%9F%87%BC-red)](https://github.com/htlin222/society-calendar)
 
 ## Folder layout
 
