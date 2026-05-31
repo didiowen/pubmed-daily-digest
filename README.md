@@ -204,6 +204,12 @@ SCImago publishes new rankings each year (around June), so scores drift. Once a 
 
 Skipping a refresh isn't fatal — the filter keeps working with stale or zero scores.
 
+## Known limitations
+
+The PubMed MCP server occasionally returns titles where italic-tag content has been stripped together with the tags themselves — e.g. `<i>Cryptococcus neoformans</i> invasion of the orbital compartment` arrives as `invasion of the orbital compartment` (genus/species missing), or pathogen abbreviations vanish leaving tell-tale joins like `Spermine suppresses-induced macrophage…`. HTML entities (`T&#xfc;rkiye` → `Türkiye`) are sometimes left undecoded too.
+
+Since v0.2.0 the filter defends against the HTML-entity case via `html.unescape()`. The content-loss case cannot be fixed from inside a cloud sandbox because PubMed E-utilities egress is blocked — the only complete fix lives in the MCP server itself. Affected titles surface in the rendered digest with a visible artefact (joined words, missing italics, empty parentheses); skim the day's output if accuracy matters and patch by hand. See [`scripts/daily_feed_filter.py:normalize_mcp_record`](./scripts/daily_feed_filter.py) for the inline comment.
+
 ## License
 
 MIT — see [`LICENSE`](./LICENSE).

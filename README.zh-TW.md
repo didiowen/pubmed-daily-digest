@@ -205,6 +205,12 @@ SCImago 每年（大約六月）會發布新的排名，分數會慢慢漂移。
 
 跳過更新也不致命，filter 即使遇到過期或為零的分數仍會繼續運作。
 
+## 已知限制
+
+PubMed MCP server 偶爾會回傳「斜體標籤 `<i>…</i>` 連同內文一起被吃掉」的標題 — 例如 `<i>Cryptococcus neoformans</i> invasion of the orbital compartment` 變成 `invasion of the orbital compartment`（屬名／種名直接消失），或病原縮寫不見只留下顯眼的拼接痕跡（如 `Spermine suppresses-induced macrophage…`）。HTML entity（如 `T&#xfc;rkiye`，應為 `Türkiye`）也有時沒解碼。
+
+v0.2.0 起，filter 透過 `html.unescape()` 處理掉 HTML entity 那一類。**內文被吃掉的情況無法在雲端 sandbox 內修補** — 因為 PubMed E-utilities 對外連線被擋，重抓乾淨原始 XML 行不通；徹底的修復必須在 MCP server 本身。受影響的標題在最終 markdown 上可以一眼看出（詞拼在一起、斜體不見、空括號），對準確度要求高的話建議翻一下當日輸出、手動補修。詳見 [`scripts/daily_feed_filter.py:normalize_mcp_record`](./scripts/daily_feed_filter.py) 內聯註解。
+
 ## License
 
 MIT，詳見 [`LICENSE`](./LICENSE)。

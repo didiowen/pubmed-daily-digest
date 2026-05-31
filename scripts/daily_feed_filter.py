@@ -33,6 +33,7 @@ directory), so the script works regardless of cwd as long as the layout is
 intact: pubmed-daily-digest/{sjr_curated.json, output/, scripts/}.
 """
 
+import html
 import json
 import re
 import sys
@@ -170,7 +171,13 @@ def normalize_mcp_record(rec: dict) -> dict:
         if last:
             authors.append(f"{last} {init}".strip())
 
-    title = (rec.get("title") or "").rstrip(".").strip()
+    # PubMed MCP sometimes returns HTML entities undecoded (e.g. "T&#xfc;rkiye"
+    # instead of "Türkiye"); html.unescape() handles those. The MCP also
+    # occasionally strips <i>...</i> content along with the tags (e.g. genus/
+    # species names disappear from the title) — that's an upstream MCP bug we
+    # can't refetch around inside a cloud sandbox. See the Known limitations
+    # section of README.md.
+    title = html.unescape(rec.get("title") or "").rstrip(".").strip()
 
     return {
         "pmid": ids.get("pmid") or "",
