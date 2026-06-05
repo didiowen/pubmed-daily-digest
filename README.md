@@ -206,9 +206,9 @@ Skipping a refresh isn't fatal — the filter keeps working with stale or zero s
 
 ## Known limitations
 
-The PubMed MCP server occasionally returns titles where italic-tag content has been stripped together with the tags themselves — e.g. `<i>Cryptococcus neoformans</i> invasion of the orbital compartment` arrives as `invasion of the orbital compartment` (genus/species missing), or pathogen abbreviations vanish leaving tell-tale joins like `Spermine suppresses-induced macrophage…`. HTML entities (`T&#xfc;rkiye` → `Türkiye`) are sometimes left undecoded too.
+The PubMed MCP server occasionally returns titles with markup or entity quirks around genus/species names — escaped inline tags (`&lt;i&gt;Cryptococcus neoformans&lt;/i&gt;`), real inline tags (`<i>Salmonella</i>`), or undecoded HTML entities (`T&#xfc;rkiye` → `Türkiye`). Left unhandled, these surfaced in the digest as raw tags or, after a naive strip, as eaten pathogen names with tell-tale joins (`Spermine suppresses-induced macrophage…`, `caused byG8 … ( )`).
 
-Since v0.2.0 the filter defends against the HTML-entity case via `html.unescape()`. The content-loss case cannot be fixed from inside a cloud sandbox because PubMed E-utilities egress is blocked — the only complete fix lives in the MCP server itself. Affected titles surface in the rendered digest with a visible artefact (joined words, missing italics, empty parentheses); skim the day's output if accuracy matters and patch by hand. See [`scripts/daily_feed_filter.py:normalize_mcp_record`](./scripts/daily_feed_filter.py) for the inline comment.
+Since v1.0.0 the filter decodes entities and peels inline markup while keeping the wrapped text (`html.unescape()` + an `HTMLParser` text extractor in `normalize_mcp_record`), so these cases now render correctly. The one residual case it cannot fix is when the MCP server has *already* dropped the tag content upstream before the record reaches the skill — the text simply isn't there to recover, and the cloud sandbox blocks a PubMed E-utilities refetch. That remnant must be fixed in the MCP server itself; affected titles still surface with a visible artefact (missing italics, empty parentheses), so skim the day's output if accuracy matters. See [`scripts/daily_feed_filter.py:normalize_mcp_record`](./scripts/daily_feed_filter.py) for the inline comment.
 
 ## License
 

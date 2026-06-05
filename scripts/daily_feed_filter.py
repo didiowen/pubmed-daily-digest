@@ -38,6 +38,7 @@ import json
 import re
 import sys
 from datetime import date, timedelta
+from html.parser import HTMLParser
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -157,6 +158,35 @@ def _if_for(rec: dict, lookup: dict) -> float:
     return lookup.get(abbr, lookup.get(full, 0.0))
 
 
+class _TextExtractor(HTMLParser):
+    """Collect the text nodes of an HTML fragment, discarding the tags."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.parts: list[str] = []
+
+    def handle_data(self, data: str) -> None:
+        self.parts.append(data)
+
+
+def _htmlish_to_text(value: str) -> str:
+    """Decode entities and strip inline markup while keeping the wrapped text.
+
+    PubMed titles sometimes arrive with escaped inline tags around genus/species
+    names (e.g. "&lt;i&gt;Cryptococcus neoformans&lt;/i&gt;"). html.unescape()
+    turns those back into real "<i>...</i>" tags; this then peels the tags off
+    but keeps the text inside, so the pathogen name survives.
+    """
+    text = html.unescape(value or "")
+    if "<" not in text or ">" not in text:
+        return text
+
+    parser = _TextExtractor()
+    parser.feed(text)
+    parser.close()
+    return "".join(parser.parts)
+
+
 def normalize_mcp_record(rec: dict) -> dict:
     """Translate `mcp__PubMed__get_article_metadata` shape to the schema used downstream."""
     ids = rec.get("identifiers", {}) or {}
@@ -172,12 +202,12 @@ def normalize_mcp_record(rec: dict) -> dict:
             authors.append(f"{last} {init}".strip())
 
     # PubMed MCP sometimes returns HTML entities undecoded (e.g. "T&#xfc;rkiye"
-    # instead of "Türkiye"); html.unescape() handles those. The MCP also
-    # occasionally strips <i>...</i> content along with the tags (e.g. genus/
-    # species names disappear from the title) — that's an upstream MCP bug we
-    # can't refetch around inside a cloud sandbox. See the Known limitations
-    # section of README.md.
-    title = html.unescape(rec.get("title") or "").rstrip(".").strip()
+    # instead of "Türkiye") or escaped inline tags around genus/species names
+    # (e.g. "&lt;i&gt;Cryptococcus neoformans&lt;/i&gt;"). _htmlish_to_text()
+    # decodes the entities and peels off the markup while keeping the wrapped
+    # text. If the MCP has already dropped the <i>...</i> content upstream, this
+    # cannot recover it — that residual case must be fixed in the MCP server.
+    title = _htmlish_to_text(rec.get("title") or "").rstrip(".").strip()
 
     return {
         "pmid": ids.get("pmid") or "",

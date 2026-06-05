@@ -207,9 +207,9 @@ SCImago 每年（大約六月）會發布新的排名，分數會慢慢漂移。
 
 ## 已知限制
 
-PubMed MCP server 偶爾會回傳「斜體標籤 `<i>…</i>` 連同內文一起被吃掉」的標題 — 例如 `<i>Cryptococcus neoformans</i> invasion of the orbital compartment` 變成 `invasion of the orbital compartment`（屬名／種名直接消失），或病原縮寫不見只留下顯眼的拼接痕跡（如 `Spermine suppresses-induced macrophage…`）。HTML entity（如 `T&#xfc;rkiye`，應為 `Türkiye`）也有時沒解碼。
+PubMed MCP server 偶爾會在屬名／種名周圍回傳帶有標記或 entity 問題的標題 — 跳脫的內聯標籤（`&lt;i&gt;Cryptococcus neoformans&lt;/i&gt;`）、真正的內聯標籤（`<i>Salmonella</i>`）、或未解碼的 HTML entity（`T&#xfc;rkiye` 應為 `Türkiye`）。若不處理，這些會在 digest 裡留下原始標籤，或在粗暴去除標籤後把病原名一起吃掉，留下顯眼的拼接痕跡（`Spermine suppresses-induced macrophage…`、`caused byG8 …（ ）`）。
 
-v0.2.0 起，filter 透過 `html.unescape()` 處理掉 HTML entity 那一類。**內文被吃掉的情況無法在雲端 sandbox 內修補** — 因為 PubMed E-utilities 對外連線被擋，重抓乾淨原始 XML 行不通；徹底的修復必須在 MCP server 本身。受影響的標題在最終 markdown 上可以一眼看出（詞拼在一起、斜體不見、空括號），對準確度要求高的話建議翻一下當日輸出、手動補修。詳見 [`scripts/daily_feed_filter.py:normalize_mcp_record`](./scripts/daily_feed_filter.py) 內聯註解。
+v1.0.0 起，filter 會解碼 entity 並剝除內聯標記、保留被包住的文字（`normalize_mcp_record` 中的 `html.unescape()` ＋ `HTMLParser` 文字擷取器），因此上述情況都能正確呈現。唯一無法修補的殘留情況，是 MCP server 在記錄送達 skill 之前就「已經」把標籤內文丟掉了 — 文字根本不存在、無從還原，而雲端 sandbox 又擋住 PubMed E-utilities 重抓。這個殘留必須在 MCP server 本身修；受影響的標題仍會留下一眼可辨的痕跡（斜體不見、空括號），對準確度要求高時請翻一下當日輸出。詳見 [`scripts/daily_feed_filter.py:normalize_mcp_record`](./scripts/daily_feed_filter.py) 內聯註解。
 
 ## License
 
