@@ -2,7 +2,7 @@
 
 > [English version](./README.md)
 
-一個 Claude Code skill，每天抓取 PubMed 過去 24 小時新增的文章，依照你預先設定的幾組主題查詢分類，為每篇文章寫一段 TL;DR 與一句話的 **Hot Take**（捧或酸都可以），再挑出 3–5 篇當天的重點，最後渲染成一份 Markdown 摘要寫到本機資料夾。輸出預設是英文，想換語言只要改一處 prompt 就好。
+一個 Claude Code skill，每天抓取 PubMed 過去 24 小時新增的文章，依照你預先設定的幾組主題查詢分類，為每篇文章寫一段 TL;DR 與一句話的 **嘻嘻/不嘻嘻**，再挑出 3–5 篇當天的重點，最後渲染成一份 Markdown 摘要寫到本機資料夾。輸出預設是英文，想換語言只要改一處 prompt 就好。
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
