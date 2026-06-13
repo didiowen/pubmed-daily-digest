@@ -71,7 +71,10 @@ def coins_span(a):
     if a.get("pmid"):
         pairs.append(("rft_id", f"info:pmid/{a['pmid']}"))
     for au in (a.get("authors") or []):
-        pairs.append(("rft.au", au))
+        # PubMed gives "Lastname Initials" (e.g. "Busca A"); emit "Lastname, Initials"
+        # so Zotero's COinS parser reads surname/given correctly (comma = Last, First).
+        last, sep, first = au.rpartition(" ")
+        pairs.append(("rft.au", f"{last}, {first}" if sep else au))
     kev = "&".join(f"{k}={urllib.parse.quote(v, safe='')}" for k, v in pairs)
     # Escape & for the HTML attribute; the browser decodes it back before Zotero reads it.
     return f'<span class="Z3988" title="{kev.replace("&", "&amp;")}"></span>'

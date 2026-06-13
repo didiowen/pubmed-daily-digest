@@ -2,6 +2,19 @@
 
 All notable changes to this skill are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [v1.1.1] — 2026-06-13
+
+### Fixed
+
+- **COinS author name order (surname/given swap on Zotero import)** — `scripts/build_daily_md.py:coins_span()` now emits `rft.au` as `"Lastname, Initials"` (with comma) instead of the raw PubMed `"Lastname Initials"`. Zotero's COinS parser treats the last token of a comma-less `rft.au` as the surname, so `"Busca A"` was importing as `firstName=Busca / lastName=A` (swapped). Splitting on the final space (`rpartition`) restores correct surname/given attribution on one-click batch save. ([build_daily_md.py](./scripts/build_daily_md.py))
+
+### Notes
+
+- No schema or interface changes; the fix is internal to COinS span generation.
+- Patch-only release — v1.1.0 deployments can upgrade without any config or output adjustments.
+
+[v1.1.1]: https://github.com/didiowen/pubmed-daily-digest/releases/tag/v1.1.1
+
 ## [v1.1.0] — 2026-06-13
 
 ### Added
