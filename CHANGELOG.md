@@ -2,6 +2,19 @@
 
 All notable changes to this skill are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [v1.1.0] — 2026-06-13
+
+### Added
+
+- **One-click Zotero batch save from the digest page** — `scripts/build_daily_md.py:coins_span()` emits a hidden `<span class="Z3988">` COinS element after each article's DOI/PMID line, encoding title/authors/journal/year/DOI/PMID as OpenURL 1.0 (KEV). The desktop Zotero Connector picks up every article in one pass — no manual DOI copy into Add-by-Identifier. Invisible in the rendered Markdown; falls back to `info:pmid/...` when DOI is missing. ([build_daily_md.py](./scripts/build_daily_md.py))
+
+### Notes
+
+- No schema, interface, or output-format changes for existing readers; the COinS span is HTML-only metadata. Existing `output/`, `sjr_curated.json`, and `.seen_pmids.json` continue to work unchanged.
+- Skill triggers unchanged (`run daily digest`, `daily lit`, `跑每日文獻`, etc.).
+
+[v1.1.0]: https://github.com/didiowen/pubmed-daily-digest/releases/tag/v1.1.0
+
 ## [v1.0.0] — 2026-06-05
 
 First stable release. No breaking changes from v0.2.0 — the version reflects the skill being declared stable, alongside the title-rendering fix below.
