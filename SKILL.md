@@ -85,7 +85,6 @@ Call `mcp__PubMed__search_articles` **in parallel** with `datetype=edat`,
 | `transplant_id` (part 1) | `aspergillosis[tiab] OR mucormycosis[tiab] OR "invasive fungal infection"[tiab] OR "invasive fungal disease"[tiab] OR candidemia[tiab] OR "invasive candidiasis"[tiab] OR cryptococcosis[tiab] OR "pneumocystis jirovecii"[tiab] OR "pneumocystis carinii"[tiab] OR PJP[tiab] OR "BK virus"[tiab] OR BKV[tiab] OR fusariosis[tiab] OR scedosporiosis[tiab] OR Scedosporium[tiab] OR PTLD[tiab] OR "post-transplant lymphoproliferative"[tiab]` |
 | `transplant_id` (part 2) | `(cytomegalovirus[tiab] OR CMV[tiab] OR EBV[tiab] OR "Epstein-Barr virus"[tiab] OR toxoplasmosis[tiab] OR Strongyloides[tiab] OR histoplasmosis[tiab] OR nocardiosis[tiab] OR Nocardia[tiab] OR mycobacterium[tiab] OR tuberculosis[tiab] OR NTM[tiab]) AND (transplantation[tiab] OR SOT[tiab] OR HSCT[tiab] OR immunocompromised[tiab] OR immunosuppressed[tiab] OR HIV[tiab] OR AIDS[tiab] OR letermovir[tiab] OR maribavir[tiab])` |
 | `one_health` | `zoonosis[tiab] OR zoonoses[tiab] OR zoonotic[tiab] OR "one health"[tiab] OR "zoonotic spillover"[tiab] OR "viral spillover"[tiab] OR "pathogen spillover"[tiab] OR "interspecies transmission"[tiab]` |
-| `food_security` | `"food safety"[tiab] OR "food security"[tiab] OR foodborne[tiab] OR "food contamination"[tiab] OR "food-borne"[tiab] OR "food pathogen"[tiab] OR "food pathogens"[tiab] OR "food quality"[tiab] OR "food protection"[tiab] OR ("antimicrobial resistance"[tiab] AND ("food chain"[tiab] OR "food production"[tiab] OR foodborne[tiab]))` |
 
 > **Customising the queries**: edit this table to fit your interests, then
 > update `SECTION_HEADERS` / `SECTION_ORDER` in `scripts/build_daily_md.py` to
@@ -112,8 +111,7 @@ Write the raw metadata to `{OUTPUT_DIR}/{DATE}_raw.json` in this shape
   "meta": {"date": "YYYY-MM-DD", "reldate": 0},
   "raw_sections": {
     "transplant_id": [<get_article_metadata records>],
-    "one_health":    [...],
-    "food_security": [...]
+    "one_health":    [...]
   }
 }
 ```

@@ -13,8 +13,7 @@ Input (raw.json) schema:
       "meta": {"date": "YYYY-MM-DD", "reldate": 0 or 1},
       "raw_sections": {
         "transplant_id": [<mcp__PubMed__get_article_metadata records>, ...],
-        "one_health":    [...],
-        "food_security": [...]
+        "one_health":    [...]
       }
     }
 
@@ -23,8 +22,7 @@ Output (daily.json) schema — drop-in input for build_daily_md.py:
       "meta": {"date": "YYYY-MM-DD", "reldate": 0 or 1},
       "sections": {
         "transplant_id": [<normalized + filtered + sorted articles>],
-        "one_health":    [...],
-        "food_security": [...]
+        "one_health":    [...]
       }
     }
 
@@ -52,7 +50,7 @@ SEEN_FILE  = SKILL_ROOT / ".seen_pmids.json"
 SEEN_TTL_DAYS = 7
 
 # Per-section caps after IF sort. Edit if you change the section list.
-CAPS = {"transplant_id": 30, "one_health": 10, "food_security": 10}
+CAPS = {"transplant_id": 30, "one_health": 10}
 
 # ── Pubtype / language filter ─────────────────────────────────────────────────
 # `language == "eng"` AND article_types intersects KEEP AND does not intersect DROP.

@@ -46,15 +46,14 @@ You'll need to create your own `sjr_curated.json` (a small lookup from journal a
 
 ## Customising the queries
 
-This is the main thing you'll want to change. The default queries cover the original author's interests (transplant infectious disease, One Health, food security). Yours will probably look different.
+This is the main thing you'll want to change. The default queries cover the original author's interests (transplant infectious disease and One Health). Yours will probably look different.
 
 ### Where the queries live
 
-`SKILL.md` → **Step 1 — PubMed search + Python filter** has a table with four queries split across three sections:
+`SKILL.md` → **Step 1 — PubMed search + Python filter** has a table with three queries split across two sections:
 
 - `transplant_id` (two parallel sub-queries, unioned by PMID)
 - `one_health`
-- `food_security`
 
 Each row becomes one parallel `mcp__PubMed__search_articles` call. You can edit the existing queries, swap a section out entirely, or add more sections.
 
@@ -79,15 +78,15 @@ Real, learned by trial:
 - **No wildcards.** `mycobacteri*` fails with `INVALID_PARAMETERS`. Expand with `OR`: `mycobacterium OR tuberculosis OR NTM`.
 - **20-operator cap per query.** A single query with more than 20 `AND`/`OR`s fails. Split into two parallel sub-queries if you hit this — `transplant_id` in the defaults already does this. The Python filter unions PMIDs from sub-queries belonging to the same section.
 
-### Worked example: swap a section
+### Worked example: add a section
 
-Suppose you don't care about food security but want **antimicrobial resistance** instead. Three edits, all in this repo:
+Suppose you want **antimicrobial resistance** as a third section alongside the two defaults. Three edits, all in this repo:
 
-1. **`SKILL.md`** — replace the `food_security` row in Step 1's table with:
+1. **`SKILL.md`** — add a row to Step 1's table:
    ```
    antimicrobial_resistance | `"antimicrobial resistance"[tiab] OR "antibiotic resistance"[tiab] OR "drug resistance"[tiab] OR "multidrug resistant"[tiab] OR MDR[tiab] OR "carbapenem resistant"[tiab] OR CRE[tiab] OR ESBL[tiab] OR "vancomycin resistant"[tiab] OR VRE[tiab] OR MRSA[tiab]`
    ```
-2. **`scripts/build_daily_md.py`** — update `SECTION_HEADERS` and `SECTION_ORDER`:
+2. **`scripts/build_daily_md.py`** — add it to `SECTION_HEADERS` and `SECTION_ORDER`:
    ```python
    SECTION_HEADERS = {
        "transplant_id":           "## Transplant & Opportunistic Infections",
@@ -96,7 +95,7 @@ Suppose you don't care about food security but want **antimicrobial resistance**
    }
    SECTION_ORDER = ["transplant_id", "one_health", "antimicrobial_resistance"]
    ```
-3. **`scripts/daily_feed_filter.py`** — update the `CAPS` dict and the cross-section dedup loop to use the new section name (search for `food_security` and replace).
+3. **`scripts/daily_feed_filter.py`** — add the new section to the `CAPS` dict (`"antimicrobial_resistance": 10`); the cross-section dedup follows the section order automatically.
 
 ### Dropping a section entirely
 
@@ -115,7 +114,7 @@ Two patches to `scripts/daily_feed_filter.py`:
 1. Near the other regex constants (around `_NOISE_RE`), declare what to rescue and where:
    ```python
    _MUST_INCLUDE_RE = re.compile(r"\b(your_pathogen|another_term)\b", re.IGNORECASE)
-   _MUST_INCLUDE_SECTIONS = {"one_health", "food_security"}   # which sections to scan
+   _MUST_INCLUDE_SECTIONS = {"transplant_id", "one_health"}   # which sections to scan
    _MUST_INCLUDE_RESCUE_CAP = 5                               # max rescued per section
    ```
 2. Inside the per-section loop in `main()`, right after the line `capped = filtered[:cap]`, splice rescued matches back in:

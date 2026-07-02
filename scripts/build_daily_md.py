@@ -22,9 +22,8 @@ sys.stdout.reconfigure(encoding="utf-8")
 SECTION_HEADERS = {
     "transplant_id": "## Transplant & Opportunistic Infections",
     "one_health":    "## One Health / Zoonoses",
-    "food_security": "## Food Security / Food Safety",
 }
-SECTION_ORDER = ["transplant_id", "one_health", "food_security"]
+SECTION_ORDER = ["transplant_id", "one_health"]
 
 
 def fmt_authors(authors):

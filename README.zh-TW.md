@@ -47,15 +47,14 @@ pubmed-daily-digest/
 
 ## 自訂查詢
 
-這通常是你最想動的部分。預設查詢反映原作者的興趣（器官移植感染症、One Health、糧食安全），你的興趣大概長得不一樣。
+這通常是你最想動的部分。預設查詢反映原作者的興趣（器官移植感染症、One Health），你的興趣大概長得不一樣。
 
 ### 查詢放在哪裡
 
-`SKILL.md` → **Step 1 — PubMed search + Python filter** 有一張表格，內含三個 section、共四組查詢：
+`SKILL.md` → **Step 1 — PubMed search + Python filter** 有一張表格，內含兩個 section、共三組查詢：
 
 - `transplant_id`（兩組平行子查詢，事後以 PMID 取聯集）
 - `one_health`
-- `food_security`
 
 每一列會展開成一次平行的 `mcp__PubMed__search_articles` 呼叫。你可以改寫現有查詢、整段換掉某個 section，或再新增 section。
 
@@ -80,15 +79,15 @@ PubMed 用 field qualifier 來限定詞彙範圍，預設查詢用到的有：
 - **不支援萬用字元**。`mycobacteri*` 會直接回 `INVALID_PARAMETERS`，請改用 `OR` 列舉：`mycobacterium OR tuberculosis OR NTM`。
 - **單條查詢最多 20 個布林運算子**。一條查詢若用了超過 20 個 `AND`／`OR` 會失敗。遇到時拆成兩組平行子查詢即可，預設的 `transplant_id` 就是這樣處理的，Python filter 會把同一 section 的子查詢以 PMID 聯集起來。
 
-### 範例：替換一個 section
+### 範例：新增一個 section
 
-假設你不在意糧食安全，但想追蹤 **antimicrobial resistance**。需要改三個地方，全部都在這個 repo 內：
+假設你想在兩個預設 section 之外，再加一個 **antimicrobial resistance**。需要改三個地方，全部都在這個 repo 內：
 
-1. **`SKILL.md`**：把 Step 1 表格裡 `food_security` 那列換成：
+1. **`SKILL.md`**：在 Step 1 表格新增一列：
    ```
    antimicrobial_resistance | `"antimicrobial resistance"[tiab] OR "antibiotic resistance"[tiab] OR "drug resistance"[tiab] OR "multidrug resistant"[tiab] OR MDR[tiab] OR "carbapenem resistant"[tiab] OR CRE[tiab] OR ESBL[tiab] OR "vancomycin resistant"[tiab] OR VRE[tiab] OR MRSA[tiab]`
    ```
-2. **`scripts/build_daily_md.py`**：更新 `SECTION_HEADERS` 與 `SECTION_ORDER`：
+2. **`scripts/build_daily_md.py`**：把它加進 `SECTION_HEADERS` 與 `SECTION_ORDER`：
    ```python
    SECTION_HEADERS = {
        "transplant_id":           "## Transplant & Opportunistic Infections",
@@ -97,7 +96,7 @@ PubMed 用 field qualifier 來限定詞彙範圍，預設查詢用到的有：
    }
    SECTION_ORDER = ["transplant_id", "one_health", "antimicrobial_resistance"]
    ```
-3. **`scripts/daily_feed_filter.py`**：更新 `CAPS` 字典與跨 section 去重迴圈，把舊的 section 名稱換掉就好（直接搜 `food_security` 全部替換即可）。
+3. **`scripts/daily_feed_filter.py`**：把新 section 加進 `CAPS` 字典（`"antimicrobial_resistance": 10`）；跨 section 去重會自動依 section 順序處理。
 
 ### 整段拿掉一個 section
 
@@ -116,7 +115,7 @@ Filter 會限制每個 section 的文章數（`scripts/daily_feed_filter.py` 內
 1. 在其他 regex 常數附近（`_NOISE_RE` 旁邊）宣告要 rescue 什麼、要看哪些 section：
    ```python
    _MUST_INCLUDE_RE = re.compile(r"\b(your_pathogen|another_term)\b", re.IGNORECASE)
-   _MUST_INCLUDE_SECTIONS = {"one_health", "food_security"}   # 要掃哪些 section
+   _MUST_INCLUDE_SECTIONS = {"transplant_id", "one_health"}   # 要掃哪些 section
    _MUST_INCLUDE_RESCUE_CAP = 5                               # 每個 section 最多 rescue 幾篇
    ```
 2. 在 `main()` 的每個 section 迴圈裡、`capped = filtered[:cap]` 那一行後面，把 rescue 的結果接回去：
