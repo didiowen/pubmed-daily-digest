@@ -242,7 +242,34 @@ def is_basic_science(rec: dict) -> bool:
 
 
 def is_noise(rec: dict) -> bool:
-    return bool(_NOISE_RE.match(rec.get("title") or ""))
+    if _NOISE_RE.match(rec.get("title") or ""):
+        return True
+    return _is_citation_titled_notice(rec)
+
+
+# A "YYYY;vol(issue):page" tail — the shape of a citation, not of a title.
+_CITATION_IN_TITLE = re.compile(r"\b(?:19|20)\d{2};\s*\d+(?:\(\d+\))?\s*:\s*\d+")
+
+
+def _is_citation_titled_notice(rec: dict) -> bool:
+    """Erratum/correction notice that PubMed has not yet typed as one.
+
+    `_NOISE_RE` above matches on the title *prefix* (^erratum|corrigendum|...),
+    and the pubtype filter drops the erratum PublicationTypes. Both miss the case
+    where the publisher titles the notice with the full citation of the paper being
+    corrected and supplies no authors — the title then starts with an author
+    surname, and NLM has not yet assigned the erratum type because the record is
+    still `STAT: In-Process`.
+
+    Observed example: PMID 42560713, titled "Chen L, Monti S, ... , Blood.
+    2008;111(4):2230-2237" with an empty author list; Crossref reports
+    `update-to: type=erratum`. Requiring BOTH no-authors AND a citation-shaped
+    year;vol(issue):page tail keeps this off legitimate articles, which either have
+    authors or don't carry a volume/page tail in the title.
+    """
+    if rec.get("authors"):
+        return False
+    return bool(_CITATION_IN_TITLE.search(rec.get("title") or ""))
 
 
 def main(date_str: str) -> None:
